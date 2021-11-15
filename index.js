@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 require("dotenv").config();
 const bot = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
+const { promisify } = require('util');
+const readdir = promisify(require('fs').readdir);
 
 bot.on("ready", async () => {
   //await train_bot();
@@ -12,12 +14,20 @@ bot.on("ready", async () => {
   });
 });
 
-bot.on('message', msg => { // Message function
-  if (msg.author.bot) return; // Ignore all bots
-  // if (msg.content.startsWith(settings.prefix)) return; // It always has to starts with the prefix which is '!'
+client.commands = new Map();
 
-  if (msg.content.startsWith("ping")) { // When a player does '!ping'
-    msg.reply("Pong!") // The bot will say @Author, Pong!
+client.on('ready', async () => {
+  readdir('./commands/', (error, files) => {
+    if (error) throw error;
+    files.forEach(file => {
+      if (!file.endsWith('.js')) return; // make sure the file is what you are looking for
+      try {
+        const properties = require(`./commands/${file}`);
+        client.commands.set(properties.help.name, properties);
+      } catch (err) {
+        throw err;
+      }  
+    });
   }
 });
 
