@@ -1,6 +1,3 @@
-const {
-  DefaultMessageNotificationLevels,
-} = require("discord.js/typings/enums");
 const errors = require("../utils/errors.js");
 /**
  * @author cvanh
@@ -19,13 +16,14 @@ module.exports.run = async (bot, message, args) => {
   //     }
   const Subcommand = message.content.substring(9);
   console.log(Subcommand);
+
   switch (Subcommand) {
     case "create":
       break;
     case "remove":
       break;
     default:
-      message.channel.send("please enter a valid input");
+      bot.messageCreate("please enter a valid input");
   }
 };
 
