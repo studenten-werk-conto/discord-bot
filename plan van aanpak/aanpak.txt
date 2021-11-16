@@ -17,7 +17,7 @@ Eisen van het project
 - Rooster in Discord bijhouden en automatisch starten
 - Rolverdeling (docenten, leerlingen, admin)
 - Registreren bij binnenkomst; Klas, naam.
-- Github intergratie
+- Github intergratie discord user moet Bestanden kunnen uploaden naar git
 - Bestanden kunnen delen via OneDrive / Sharepoint en
 duidelijk terug te vinden voor studenten.
 - Waarschuwingssysteem (bij 3 strikes, 24 uur blocken)
