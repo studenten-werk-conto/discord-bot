@@ -19,6 +19,8 @@ module.exports.run = async (bot, message, args) => {
 
   switch (Subcommand) {
     case "create":
+        const name = "naam"
+        message.guild.createChannel(name, 'text')
       break;
     case "remove":
       break;
