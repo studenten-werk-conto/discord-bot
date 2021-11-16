@@ -9,26 +9,30 @@ bot.on("ready", async () => {
   console.log(
     `${bot.user.username} is online on ${bot.guilds.cache.size} servers`
   );
-  bot.user.setActivity("with some code", {
+  bot.user.setActivity("altijdgeslaagd.nl kanker kind", {
     type: "PLAYING",
   });
 });
 
 client.commands = new Map();
 
-client.on('ready', async () => {
-  readdir('./commands/', (error, files) => {
-    if (error) throw error;
-    files.forEach(file => {
-      if (!file.endsWith('.js')) return; // make sure the file is what you are looking for
-      try {
-        const properties = require(`./commands/${file}`);
-        client.commands.set(properties.help.name, properties);
-      } catch (err) {
-        throw err;
-      }  
-    });
+fs.readdir("./commands", (err, files) => {
+  if (err) console.log(err);
+  let jsfile = files.filter((f) => f.split(".").pop() === "js");
+  if (jsfile.length <= 0) {
+    console.log("No commands");
+    return;
   }
+  jsfile.forEach((f, i) => {
+    let props = require(`./commands/${f}`);
+    console.log(`${f} loaded!`);
+    bot.commands.set(props.help.name, props);
+  });
+});
+
+bot.on("message", async (message) => {
+  let commandfile = bot.commands.get(cmd.slice(prefix.length));
+  if (commandfile) commandfile.run(bot, message, args);
 });
 
 //login
