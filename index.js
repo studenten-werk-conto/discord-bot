@@ -3,6 +3,10 @@ require("dotenv").config();
 const bot = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
+const fs = require("fs");
+const botconfig = require("./botconfig.json");
+let prefix = botconfig.prefix;
+bot.commands = new Discord.Collection();
 
 bot.on("ready", async () => {
   //await train_bot();
@@ -14,7 +18,6 @@ bot.on("ready", async () => {
   });
 });
 
-client.commands = new Map();
 
 fs.readdir("./commands", (err, files) => {
   if (err) console.log(err);
@@ -31,6 +34,9 @@ fs.readdir("./commands", (err, files) => {
 });
 
 bot.on("message", async (message) => {
+  let messageArray = message.content.split(" ");
+  let cmd = messageArray[0];
+  let args = messageArray.slice(1);
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
   if (commandfile) commandfile.run(bot, message, args);
 });
