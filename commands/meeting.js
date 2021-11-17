@@ -18,18 +18,29 @@ module.exports.run = async (bot, message, args) => {
     // console.log(t.guild.channels.channels);
       message.guild.channels.fetch().then((channels) => {
         channels.forEach((element) => {
-          console.log(element.members);
           // loops trough the voice channels
-          // find a empty voice channel
-          // if (element.type === "GUILD_VOICE" && element.members.size === 0) {
-          //   console.log(element.id);
+          // find a voice channel
+          if(element.type === "GUILD_VOICE"){
+            const data = bot.channels.get(element.id)
+            console.log(data)
+
+
+
+            // console.log(element)
+
+          //   // is the channel a empty voice channel?
+          // if (data.members.size === 0) {
+          //   console.log(`channel empty with id: ${element.id}`);
             
+          // } else {
+          //   console.log(`channel /w person: ${element.id}`)
           // }
+        }
         });
       });
       break;
 
-    case "presentie": // this is for .meeting remove
+    case "presentie": // this is for .meeting remove.
       break;
     default:
       // no valid command found
