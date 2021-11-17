@@ -1,5 +1,7 @@
 const errors = require("../utils/errors.js");
 const { GetChannelId } = require("../utils/index.js");
+const botconfig = require("../botconfig.json");
+
 /**
  * @author cvanh
  * @param {*} bot
@@ -7,35 +9,23 @@ const { GetChannelId } = require("../utils/index.js");
  * @param {*} args
  */
 module.exports.run = async (bot, message, args) => {
-  console.log(message.guildid)
-  const Subcommand = message.content.substring(9);
+  const Subcommand = message.content.substring(9); // extract the parameter/subcommand of .meeting
   console.log("the subcommand is: " + Subcommand);
 
   switch (Subcommand) {
     case "create": // this is for .meeting create
-      // console.log(message);      
-    //   const t = message.guild.channels.cache.get(message.channelId)
-    // console.log(t.guild.channels.channels);
       message.guild.channels.fetch().then((channels) => {
         channels.forEach((element) => {
-          // loops trough the voice channels
-          // find a voice channel
-          if(element.type === "GUILD_VOICE"){
-            const data = bot.channels.get(element.id)
-            console.log(data)
-
-
-
-            // console.log(element)
-
-          //   // is the channel a empty voice channel?
-          // if (data.members.size === 0) {
-          //   console.log(`channel empty with id: ${element.id}`);
-            
-          // } else {
-          //   console.log(`channel /w person: ${element.id}`)
-          // }
-        }
+          console.log(element)
+            if (
+              element.members.size === 0 && // are there users in the channel
+              element.type === "GUILD_VOICE" &&  // is it a voice channel?
+              element.id != "910227270776541234" // prevent user from joining waiting channel
+               ) {
+              console.log(`channel empty with id: ${element.id}`); 
+              message.member.voice.setChannel(element.id)
+            }
+          
         });
       });
       break;

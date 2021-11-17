@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 require("dotenv").config();
-const bot = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
+const bot = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES","GUILD_VOICE_STATES"] });
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
 const fs = require("fs");

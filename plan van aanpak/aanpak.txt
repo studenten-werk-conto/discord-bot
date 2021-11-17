@@ -32,3 +32,4 @@ code afspraken:
 - hoe coderen we (engels)
 - discord meetings, alles pushen en clonen van github.
 - javascript en JSON. 
+- zie github board voor opdrachten
