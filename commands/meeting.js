@@ -3,6 +3,7 @@ const { GetChannelId } = require("../utils/index.js");
 const botconfig = require("../botconfig.json");
 const MeetingCreate = require("./meeting/MeetingCreate.js");
 const MeetingPresence = require("./meeting/MeetingPresence.js");
+const MeetingGet = require("./meeting/meetingGet.js");
 
 /**
  * @author cvanh
@@ -21,6 +22,9 @@ module.exports.run = async (bot, message, args) => {
 
     case "presence": // this is for .meeting remove.
       MeetingPresence(bot, message, args);
+      break;
+    case "get":
+      MeetingGet(bot, message, args);
       break;
     default:
       // no valid command found

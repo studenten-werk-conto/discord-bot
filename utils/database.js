@@ -67,12 +67,12 @@ async function db_findone(collection, data) {
  */
 function db_updateuser(collection, query, data) {
     const setdata = data
-    const an = data.presence
+    const presence = data.presence
     delete setdata.presence
   connect.then(async () => {
     const NewData = {
     //   $set: {setdata},
-      $addToSet: {an}
+      $addToSet: {"presence":presence}
     };
     const options = {
       upsert: true
