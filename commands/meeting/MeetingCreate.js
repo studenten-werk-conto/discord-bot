@@ -1,3 +1,7 @@
+const errors = require("../../utils/errors.js");
+const { GetChannelId } = require("../../utils/index.js");
+const botconfig = require("../../botconfig.json");
+
 function MeetingCreate(bot, message, args){
     message.guild.channels.fetch().then((channels) => {
         channels.forEach((element) => {
