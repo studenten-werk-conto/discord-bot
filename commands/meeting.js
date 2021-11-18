@@ -1,6 +1,8 @@
 const errors = require("../utils/errors.js");
 const { GetChannelId } = require("../utils/index.js");
 const botconfig = require("../botconfig.json");
+const MeetingCreate = require("./meeting/MeetingCreate.js");
+const MeetingPresence = require("./meeting/MeetingPresence.js");
 
 /**
  * @author cvanh
@@ -14,24 +16,11 @@ module.exports.run = async (bot, message, args) => {
 
   switch (Subcommand) {
     case "create": // this is for .meeting create
-      message.guild.channels.fetch().then((channels) => {
-        channels.forEach((element) => {
-          console.log(element)
-            if (
-              element.members.size === 0 && // are there users in the channel
-              element.type === "GUILD_VOICE" &&  // is it a voice channel?
-              element.id != botconfig.VC_wait_channel // prevent user from joining waiting channel
-               ) {
-              console.log(`channel empty with id: ${element.id}`); 
-              message.member.voice.setChannel(element.id) // moves the message author to a voice channel
-            }
-          
-        });
-      });
+      MeetingCreate(bot, message, args);
       break;
 
-    case "presentie": // this is for .meeting remove.
-    console.log(message.member.roles)
+    case "presence": // this is for .meeting remove.
+      MeetingPresence(bot, message, args);
       break;
     default:
       // no valid command found
