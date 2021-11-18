@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
   const Subcommand = message.content.substring(9); // extract the parameter/subcommand of .meeting
   console.log("the subcommand is: " + Subcommand);
 
-  switch (Subcommand) {
+  switch (args[0]) { // selects the second parameter example .meeting get @user get is the parameter of meeting
     case "create": // this is for .meeting create
       MeetingCreate(bot, message, args);
       break;
@@ -28,7 +28,8 @@ module.exports.run = async (bot, message, args) => {
       break;
     default:
       // no valid command found
-      bot.messageCreate("not a valid input");
+      // bot.messageCreate("not a valid input");
+      console.log(args)
   }
 };
 

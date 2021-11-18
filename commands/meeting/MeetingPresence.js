@@ -17,6 +17,7 @@ function MeetingPresence(bot, message, args) {
               user_username: k.user.username, // username of student at time of first presence poll
               presence: {
                 recorded_by: message.author.id, // teachers discord id
+                recorded_by_username: message.author.username,
                 time: new Date(), // time of presence poll
                 channel_name: i.name, // name of the voice channel
               },
