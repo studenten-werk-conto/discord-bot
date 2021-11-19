@@ -33,7 +33,7 @@ fs.readdir("./commands", (err, files) => {
   });
 });
 
-bot.on("message", async (message) => {
+bot.on("messageCreate", async (message) => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);

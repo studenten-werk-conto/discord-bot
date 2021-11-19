@@ -8,7 +8,7 @@ module.exports.noPerms = (message, perm) => {
     .setColor(config.red)
     .addField("you need this permission: ", perm);
 
-  message.channel.send(embed).then((m) => m.delete(5000));
+  message.channel.send({ embeds: [embed] }).then((m) => m.delete(5000));
 };
 
 module.exports.equalPerms = (message, user, perms) => {
@@ -18,7 +18,7 @@ module.exports.equalPerms = (message, user, perms) => {
     .setTitle("error")
     .addField(`${user} has permission: `, perms);
 
-  message.channel.send(embed).then((m) => m.delete(5000));
+  message.channel.send({ embeds: [embed] }).then((m) => m.delete(5000));
 };
 
 module.exports.botuser = (message) => {
@@ -26,7 +26,7 @@ module.exports.botuser = (message) => {
     .setTitle("error")
     .setDescription("you can't ban a bot")
     .setColor(config.red);
-  message.channel.send(embed).then((m) => m.delete(5000));
+  message.channel.send({ embeds: [embed] }).then((m) => m.delete(5000));
 };
 
 module.exports.cantfindUser = (channel) => {
@@ -35,7 +35,7 @@ module.exports.cantfindUser = (channel) => {
     .setDescription("can't find the given user")
     .setColor(config.red);
 
-  channel.send(embed).then((m) => m.delete(5000));
+  channel.send({ embeds: [embed] }).then((m) => m.delete(5000));
 };
 
 module.exports.noReason = (channel) => {
@@ -44,5 +44,14 @@ module.exports.noReason = (channel) => {
     .setDescription("reason?")
     .setColor(config.red);
 
-  channel.send(embed).then((m) => m.delete(5000));
+   channel.send({ embeds: [embed] }).then((m) => setTimeout(() => {m.delete()}, 5000));
+};
+
+module.exports.noParameter = (channel) => {
+  let embed = new Discord.MessageEmbed()
+    .setTitle("error")
+    .setDescription("the given command was found but not the given parameter type .help for more information")
+    .setColor(config.red);
+
+   channel.send({ embeds: [embed] }).then((m) => setTimeout(() => {m.delete()}, 5000));
 };
