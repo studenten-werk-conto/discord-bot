@@ -1,11 +1,17 @@
 const errors = require("../../utils/errors.js");
-const { GetChannelId } = require("../../utils/index.js");
-const botconfig = require("../../botconfig.json");
 const Discord = require("discord.js");
 const MeetinggetData = require("./utils/MeetingGetDescription.js");
 
 
 async function MeetingGet(bot, message, args){
+    console.log(args.length)
+    console.log(typeof args.length)
+
+    // if(args.length === 1) return console.log("kaas");
+    
+    if(!args[1]) return errors.cantfindUser(message.channel)
+
+
     const data = await MeetinggetData(args)
     const embed = new Discord.MessageEmbed()
     /*

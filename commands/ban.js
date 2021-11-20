@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+// const Discord = require("discord.js");
 const errors = require("../utils/errors");
 const PrivilegeCheck = require("../utils/PrivilegeCheck");
 
@@ -36,9 +36,9 @@ module.exports.run = (bot, message, args) => {
   // message.guild.member(buser).ban(breason);
   // message.channel.send(banembed);
 
-  if(PrivilegeCheck()) return errors.noPerms(message, "BAN_MEMBERS");
+  if(!PrivilegeCheck(message)) return errors.noPerms(message, "BAN_MEMBERS");
 
-  console.log("BANNED BANNED BANNED BANNED")
+  console.log("\x1b[31m"+"BANNED BANNED BANNED BANNED"+"\x1b[31m")
   // .ban 
 };
 

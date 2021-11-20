@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const fs = require("fs");
 let config = require("../botconfig.json");
 module.exports.noPerms = (message, perm) => {
   let embed = new Discord.MessageEmbed()
@@ -26,7 +25,7 @@ module.exports.botuser = (message) => {
     .setTitle("error")
     .setDescription("you can't ban a bot")
     .setColor(config.red);
-    
+
   message.channel.send({ embeds: [embed] }).then((m) => setTimeout(() => { m.delete() }, 5000));
 };
 
