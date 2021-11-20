@@ -1,8 +1,15 @@
 const Discord = require("discord.js");
 require("dotenv").config();
-const bot = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES","GUILD_VOICE_STATES","DIRECT_MESSAGES"] });
-const { promisify } = require('util');
-const readdir = promisify(require('fs').readdir);
+const bot = new Discord.Client({
+  intents: [
+    "GUILDS",
+    "GUILD_MESSAGES",
+    "GUILD_VOICE_STATES",
+    "DIRECT_MESSAGES",
+  ],
+});
+const { promisify } = require("util");
+const readdir = promisify(require("fs").readdir);
 const fs = require("fs");
 const botconfig = require("./botconfig.json");
 let prefix = botconfig.prefix;
@@ -17,7 +24,6 @@ bot.on("ready", async () => {
     type: "PLAYING",
   });
 });
-
 
 fs.readdir("./commands", (err, files) => {
   if (err) console.log(err);
