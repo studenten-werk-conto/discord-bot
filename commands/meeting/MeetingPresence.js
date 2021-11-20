@@ -1,6 +1,7 @@
 const {
   db_updateuser,
 } = require("../../utils/database");
+const UserFormatForDB = require("../../utils/UserFormatForDB");
 
 function MeetingPresence(bot, message, args) {
   message.guild.channels.fetch().then((channels) => {
@@ -12,16 +13,7 @@ function MeetingPresence(bot, message, args) {
           // loop trough all the members in a voice channel
           db_updateuser("presence",
             { user_id: k.user.id }, // search in db for user with their discord id
-            {
-              user_id: k.user.id, // user id of student
-              user_username: k.user.username, // username of student at time of first presence poll
-              presence: {
-                recorded_by: message.author.id, // teachers discord id
-                recorded_by_username: message.author.username,
-                time: new Date(), // time of presence poll
-                channel_name: i.name, // name of the voice channel
-              },
-            }
+          UserFormatForDB(k,message)
           );
         });
       }
