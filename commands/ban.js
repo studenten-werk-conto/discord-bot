@@ -3,7 +3,6 @@ const errors = require("../utils/errors");
 const PrivilegeCheck = require("../utils/PrivilegeCheck");
 
 module.exports.run = (bot, message, args) => {
-
   // if (!message.member.hasPermission("BAN_MEMBERS"))
   //   return errors.noPerms(message, "BAN_MEMBERS");
 
@@ -35,11 +34,14 @@ module.exports.run = (bot, message, args) => {
 
   // message.guild.member(buser).ban(breason);
   // message.channel.send(banembed);
+  console.log(args.length);
 
-  if(!PrivilegeCheck(message)) return errors.noPerms(message, "BAN_MEMBERS");
+  if (!PrivilegeCheck(message)) return errors.noPerms(message, "BAN_MEMBERS");
 
-  console.log("\x1b[31m"+"BANNED BANNED BANNED BANNED"+"\x1b[31m")
-  // .ban 
+  //if(args.length == 0)return errors.cantfindUser(message.channel) // TODO doesnt work
+
+  console.log("\x1b[31m" + "BANNED BANNED BANNED BANNED" + "\x1b[31m");
+  // .ban
 };
 
 module.exports.help = {
