@@ -2,10 +2,7 @@
   "prefix": ".",
   "me": "909838985130565642",
   "VC_wait_channel": "910227270776541234",
-  "TeacherRoleId": "910601653579821096",
-  "StudentRoleId": "910601570826207233",
   "help": {
-    "description":"this is the help menu"
+    "description": "this is the help menu"
   }
-
 }
