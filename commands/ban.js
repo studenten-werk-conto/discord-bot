@@ -38,7 +38,8 @@ module.exports.run = (bot, message, args) => {
 
   if (!PrivilegeCheck(message)) return errors.noPerms(message, "BAN_MEMBERS");
 
-  //if(args.length == 0)return errors.cantfindUser(message.channel) // TODO doesnt work
+  // if(args.length == 0)return errors.cantfindUser(message.channel) // TODO doesnt work
+  if (args.length == 0) return console.log("asdasdasdasdasda sd");
 
   console.log("\x1b[31m" + "BANNED BANNED BANNED BANNED" + "\x1b[31m");
   // .ban
