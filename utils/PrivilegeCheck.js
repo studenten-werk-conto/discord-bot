@@ -4,9 +4,9 @@
  * @returns true if message author is a teacher
  */
 
-function PrivilegeCheck(message){
-    if (message.member.roles.cache.some(role => role.name === 'docent')) {
-        return true
-    }
-}
-module.exports = PrivilegeCheck;
+const PrivilegeCheck = (message) => {
+  if (message.member.roles.cache.some((role) => role.name === "docent")) {
+    return false; // user is a teacher. ps not really proud of returning false, git blame me
+  }
+};
+module.exports.PrivilegeCheck = PrivilegeCheck;

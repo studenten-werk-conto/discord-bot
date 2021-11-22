@@ -68,7 +68,7 @@ module.exports.cantfindUser = (channel) => {
     .setDescription("can't find the given user")
     .setColor(config.red);
 
-  message.channel.send({ embeds: [embed] }).then((m) =>
+  channel.send({ embeds: [embed] }).then((m) =>
     setTimeout(() => {
       m.delete();
     }, 5000)
