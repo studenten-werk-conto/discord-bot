@@ -6,12 +6,14 @@ const bot = new Discord.Client({
     'GUILD_MESSAGES',
     'GUILD_VOICE_STATES',
     'DIRECT_MESSAGES',
+    'GUILD_MEMBERS',
   ],
 })
 const { promisify } = require('util')
 const readdir = promisify(require('fs').readdir)
 const fs = require('fs')
 const botconfig = require('./botconfig.json')
+const Welcome = require('./commands/Welcome')
 let prefix = botconfig.prefix
 bot.commands = new Discord.Collection()
 
@@ -45,6 +47,18 @@ bot.on('messageCreate', async (message) => {
   let args = messageArray.slice(1)
   let commandfile = bot.commands.get(cmd.slice(prefix.length))
   if (commandfile) commandfile.run(bot, message, args)
+})
+
+bot.on('guildMemberAdd', (member) => {
+  // TODO make this a seprate file
+  const embed = new Discord.MessageEmbed()
+    .setColor(0x3498db)
+    .setTitle('hi welocme')
+    .setURL(``)
+    .setDescription('data.presence')
+
+    .setTimestamp()
+  member.send({ embeds: [embed] })
 })
 
 //login
