@@ -1,12 +1,12 @@
 function getChannelIDs(fetch) {
-  var array = [];
-  let channels = client.guilds.channels;
+  var array = []
+  let channels = client.guilds.channels
   for (const channel of channels.values()) {
-    array.push(channel.id);
-    console.log(channel.id);
+    array.push(channel.id)
+    console.log(channel.id)
   }
 
-  return array;
+  return array
 }
 
-module.exports = getChannelIDs;
+module.exports = getChannelIDs
