@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
   let embed = new Discord.MessageEmbed()
     .setTitle('help menu')
     // .setDescription(MessageDivider(botconfig.help.description,4028))
-    .setDescription(botconfig.help)
+    .setDescription(botconfig.help.description)
     .setColor(botconfig.red)
 
   message.channel.send({ embeds: [embed] }).then((m) =>
