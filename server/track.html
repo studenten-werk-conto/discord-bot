@@ -7,9 +7,22 @@
     <title>enter your email</title>
   </head>
   <body>
-    <form method="get" action="/track">
-      <input type="text" name="email" />
+    <form id="form">
+      <input type="uuid" name="uuid" placeholder="uuid" />
+      <input type="text" name="email" placeholder="email" />
       <input type="submit" />
     </form>
+    <script>
+      const form = document.getElementById("form");
+      form.addEventListener("submit", (e) => {
+        alert(form[0].value);
+        alert(form[1].value);
+        fetch(
+          `http://localhost:8080/sendemail?uuid=${form[0].value}&email=${form[1].value}`
+        );
+        console.log(e);
+        e.preventDefault();
+      });
+    </script>
   </body>
 </html>

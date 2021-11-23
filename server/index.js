@@ -11,12 +11,17 @@ app.get("/index.html", function (req, res) {
   res.sendFile(path.join(__dirname, "/track.html"));
 });
 
-app.get("/track", async (req, res) => {
+app.get("/sendemail", async (req, res) => {
   console.log(req.query);
   console.log(req.query.email);
-  SendConfirmation(req.query.email, uuid);
   console.log(parse_host(req.query.email));
 
+  SendConfirmation(req.query.email, req.query.uuid);
+
+  res.status(200).send({ response: req.body });
+});
+
+app.get("/track", async (req, res) => {
   res.status(200).send({ response: req.body });
 });
 
