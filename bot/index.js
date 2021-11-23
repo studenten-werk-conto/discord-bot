@@ -54,20 +54,19 @@ bot.on('messageCreate', async (message) => {
 bot.on('guildMemberAdd', async (member) => {
   // TODO make this a seprate file
 
-  const uuid = randomUUID()
+  const uuid = randomUUID() // uuid for tracking the user trough the email verifying procces
 
-  db_insert('presence', {
+  db_insert('presence', { // inserts the data we have now into the database
     user_id: member.id,
     tracking_code: uuid,
-    email_confirmed: false
+    email_verified: false
   })
 
-  console.log('a')
   const embed = new Discord.MessageEmbed()
     .setColor(0x3498db)
-    .setTitle('hi welocme')
+    .setTitle('welcom please click here to verify your mail')
     .setURL(`http://www.localhost:8080/index.html?trackid=${uuid}`)
-    .setDescription('data.presence')
+    .setDescription('please verify/confirm your email addres so ensure you are a student')
 
     .setTimestamp()
   member.send({ embeds: [embed] })
