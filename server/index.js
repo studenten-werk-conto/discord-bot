@@ -19,6 +19,9 @@ app.get("/index.html",async(req, res)=>{
 })
 //stap 2
 app.get("/sendmail",async(req, res)=>{
+  
+  // TODO insert the email into the db
+
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -46,14 +49,17 @@ app.get("/sendmail",async(req, res)=>{
     });
 
     console.log(req.query);
+    res.header('Access-Control-Allow-Origin', '*')
     res.status(200);
     res.send();
 })
 
 // stap 3 
 app.get("/track",async(req, res)=>{
+    // update the status of the conformation
+
     console.log(req.query)
-    res.status(200).send({Response:req.body});
+    res.status(200).send({Response:req.query});
 })
 
 // port

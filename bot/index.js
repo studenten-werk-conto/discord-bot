@@ -59,13 +59,14 @@ bot.on('guildMemberAdd', async (member) => {
   db_insert('presence', {
     user_id: member.id,
     tracking_code: uuid,
+    email_confirmed: false
   })
 
   console.log('a')
   const embed = new Discord.MessageEmbed()
     .setColor(0x3498db)
     .setTitle('hi welocme')
-    .setURL(`http://www.localhost:8080/tracking?trackid=${uuid}`)
+    .setURL(`http://www.localhost:8080/index.html?trackid=${uuid}`)
     .setDescription('data.presence')
 
     .setTimestamp()
