@@ -1,0 +1,27 @@
+{
+  "name": "projectweek-discord",
+  "version": "1.0.0",
+  "description": "a discord bot for glu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "prepare": "husky install"
+  },
+  "author": "los pollos hermanos",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.3.1",
+    "dotenv": "^10.0.0",
+    "mongodb": "^4.2.0"
+  },
+  "devDependencies": {
+    "husky": "^7.0.0",
+    "lint-staged": "^12.1.2",
+    "prettier": "^2.4.1",
+    "pretty-quick": "^3.1.2"
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
+  }
+}

@@ -1,0 +1,7 @@
+/node_modules
+/.husky
+*.env
+/.vscode
+*.xd
+ .DS_Store                  
+package-lock.json
