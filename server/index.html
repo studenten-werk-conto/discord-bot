@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hi</h1>
+    <!-- Form -->
+    <form id="form">
+        <input type="text" placeholder="email" id="email" name="email">
+        <input type="submit">
+    </form>
+
+    <!-- javascript -->
+    <script>
+        // haalt de id op van de form 
+        const form = document.getElementById("form");
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const trackid = urlParams.get("trackid");
+
+        console.log(trackid);
+        
+        form.addEventListener("submit", (e)=>{
+            e.preventDefault();
+            console.log(form[0].value);
+        fetch(`http://localhost:8080/sendmail?trackid=${trackid}&email=${form[0].value}`)    
+            
+        });
+        
+        
+
+    </script>
+
+</body>
+</html>
