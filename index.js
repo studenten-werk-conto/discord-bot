@@ -14,6 +14,8 @@ const readdir = promisify(require('fs').readdir)
 const fs = require('fs')
 const botconfig = require('./botconfig.json')
 const Welcome = require('./commands/Welcome')
+const { db_insert } = require('./utils/database')
+const { randomUUID } = require('crypto')
 let prefix = botconfig.prefix
 bot.commands = new Discord.Collection()
 
@@ -49,12 +51,21 @@ bot.on('messageCreate', async (message) => {
   if (commandfile) commandfile.run(bot, message, args)
 })
 
-bot.on('guildMemberAdd', (member) => {
+bot.on('guildMemberAdd', async (member) => {
   // TODO make this a seprate file
+
+  const uuid = randomUUID()
+
+  db_insert('presence', {
+    user_id: member.id,
+    tracking_code: uuid,
+  })
+
+  console.log('a')
   const embed = new Discord.MessageEmbed()
     .setColor(0x3498db)
     .setTitle('hi welocme')
-    .setURL(``)
+    .setURL(`http://www.localhost:8080/tracking?trackid=${uuid}`)
     .setDescription('data.presence')
 
     .setTimestamp()
