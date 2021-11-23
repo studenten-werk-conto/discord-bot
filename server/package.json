@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "mongodb": "^4.2.0"
+    "mongodb": "^4.2.0",
+    "tld-extract": "^2.0.1"
   }
 }
