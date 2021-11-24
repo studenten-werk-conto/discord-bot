@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>hi</h1>
+    <div id="messagebox"></div>
     <!-- Form -->
     <form id="form">
-        <input type="text" placeholder="email" id="email" name="email">
-        <input type="submit">
+        <input type="email" placeholder="email" id="email" name="email">
+        <input type="submit" value="verstuur email">
     </form>
 
     <!-- javascript -->
     <script>
-        // const email = "mvandorst@outlook.com";
-        // const result = email.split("@").pop();// string after @
-        // document.write(result);
-         
+        const messagebox = document.getElementById("messagebox");
 
         // haalt de id op van de form 
         const form = document.getElementById("form");
@@ -28,17 +27,41 @@
         const trackid = urlParams.get("trackid");
 
         console.log(trackid);
-        
-        form.addEventListener("submit", (e)=>{
-            e.preventDefault();
-            console.log(form[0].value);
-        fetch(`http://localhost:8080/sendmail?trackid=${trackid}&email=${form[0].value}`)    
-            
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();            
+            messagebox.style.display = "block"
+            messagebox.innerHTML = `succesfully send a email to: <br> ${form[0].value}`
+
+            // sends the data in the form of a get request
+            fetch(`http://localhost:8080/sendmail?trackid=${trackid}&email=${form[0].value}`)
         });
-        
-        
+
+
 
     </script>
+    <style>
+        body {
+            width: 50%;
+            margin-right: auto;
+            margin-left: auto;
+        }
 
+        #messagebox {
+
+            background-color: hsla(120, 100%, 25%, 0.404);
+            border: 1px black solid;
+            border-radius: 20px;
+            min-width: 50%;
+            height: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            margin: 20px;
+            text-align: center;
+
+            display: none;
+        }
+    </style>
 </body>
+
 </html>

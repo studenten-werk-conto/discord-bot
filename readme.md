@@ -47,3 +47,4 @@ a: make shure you enabled all the intents
 5. ditch javascript return to monke
 6. or x86 assambly instruction set
 7. gratis gmail gebruiken om mails te versturen, we konden beter een smtp server gebruiken. 
+8. using a get to send the data from the regstration form
