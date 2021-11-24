@@ -8,9 +8,10 @@ const express = require ("express");
 const path = require ("path");
 // const { send } = require("process");
 const app = express();
-const {pars_host}=require("tld-extract")
+const {parse_host}=require("tld-extract")
 const port = 8080;
 const nodemailer = require('nodemailer');
+const { db_updateuser } = require("./database");
 
 // stap 1 user krijgt form te zien waar diegene email kan invullen
 app.get("/index.html",async(req, res)=>{
@@ -21,6 +22,9 @@ app.get("/index.html",async(req, res)=>{
 app.get("/sendmail",async(req, res)=>{
   
   // TODO insert the email into the db
+    db_updateuser("presence", {tracking_code: req.query.trackid}, {
+        email: req.query.email
+    });
 
 
     const transporter = nodemailer.createTransport({
@@ -37,7 +41,9 @@ app.get("/sendmail",async(req, res)=>{
       subject: 'verificatie discord server',
       text: `hallo
       
-      http://localhost:8080/track?trackid=${req.query.trackid}`
+      http://localhost:8080/track?trackid=${req.query.trackid}&email=${req.query.email}`
+
+
     };
     
     transporter.sendMail(mailOptions, function(error, info){
@@ -59,7 +65,11 @@ app.get("/track",async(req, res)=>{
     // update the status of the conformation
 
     console.log(req.query)
+    console.log(req.query.email);
+    console.log(parse_host(req.query.email));
+
     res.status(200).send({Response:req.query});
+    
 })
 
 // port
