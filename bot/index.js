@@ -8,6 +8,7 @@ const bot = new Discord.Client({
     'DIRECT_MESSAGES',
     'GUILD_MEMBERS',
     'GUILD_MESSAGE_REACTIONS',
+    'DIRECT_MESSAGE_REACTIONS',
   ],
 })
 const { promisify } = require('util')
@@ -15,7 +16,7 @@ const readdir = promisify(require('fs').readdir)
 const fs = require('fs')
 const botconfig = require('./botconfig.json')
 const Welcome = require('./commands/Welcome')
-const { db_insert } = require('./utils/database')
+const { db_insert, db_find, db_findone } = require('./utils/database')
 const { randomUUID, checkPrimeSync } = require('crypto')
 let prefix = botconfig.prefix
 bot.commands = new Discord.Collection()
@@ -73,14 +74,42 @@ bot.on('guildMemberAdd', async (member) => {
     )
 
     .setTimestamp()
-  await member.send({ embeds: [embed] }).then((Embedmessage) => {
-    Embedmessage.react('👍')
-  })
+  await member.send({embeds: [embed]})
 })
 
-bot.on('messageReactionAdd', (reaction, user) => {
-  console.log(reaction)
-})
+// bot.on('interactionCreate', (reaction, user) => {
+//   console.log("aa")
+//   console.log(reaction)
+// })
+bot.on('interactionCreate', async (interaction,message) => {
+  if (interaction.componentType === "BUTTON"){
+    // console.log(interaction)
+    const author = interaction.user
+    
+    const data = await db_findone('presence',{"user_id":interaction.user.id});
+    // console.log(data)
+
+    let role;
+    switch(data.role){
+      case 'student': // give the student role
+        role = interaction.guild.roles.cache.get('910601570826207233');
+        interaction.member.roles.add(role)
+        break;
+
+      case 'docent': // give the teacher role
+        role = interaction.guild.roles.cache.get('910601653579821096');
+        interaction.member.roles.add(role)
+
+        break;
+      default:
+        console.log('error no valid role')
+    }
+
+
+
+
+  }
+});
 
 //login
 bot.login(process.env.token)

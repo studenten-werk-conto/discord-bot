@@ -1,16 +1,25 @@
 const Discord = require('discord.js')
 
 module.exports.run = async (bot, message, args) => {
+  const row = new Discord.MessageActionRow()
+			.addComponents(
+        new Discord.MessageButton()
+        .setCustomId('primary')
+        .setLabel('yes i have verified')
+        .setStyle('PRIMARY'),
+			);
+      // await Discord.interaction.reply({ content: 'Pong!', components: [row] });
+
+
   const embed = new Discord.MessageEmbed()
     .setColor(0x3498db)
-    .setTitle('hi welocme')
-    .setURL(`imaretarded.dev/tracking?trackid=${member.id}`)
+    .setTitle('ples click if you verified')
     .setDescription(
-      'hallo persoon welkom klik op de link om de laaste stappen door te nemen van de regestratie'
+      'please verify/confirm your email addres so ensure you are a student'
     )
 
     .setTimestamp()
-  member.send({ embeds: [embed] })
+  message.channel.send({ephemeral: true, embeds: [embed],components: [row] })
 }
 
 module.exports.help = {
