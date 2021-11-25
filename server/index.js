@@ -90,7 +90,8 @@ app.get("/track", async (req, res) => {
     AssignUserRole("student", req.query.trackid);
   }
 
-  res.status(200).send({ Response: req.query });
+  // res.status(200).send({ Response: req.query });
+  res.status(200).send("succes you can now go to the server and click on the i have veriefied button");
 });
 
 // port
