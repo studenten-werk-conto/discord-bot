@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const { MeetinggetData, PrivilegeCheck } = require('../../utils')
 
 async function MeetingGet(bot, message, args) {
-  if (!PrivilegeCheck(message)) return errors.noPerms(message, 'you no teacher')
+  if (PrivilegeCheck(message)) return errors.noPerms(message, 'you no teacher')
   if (args.length === 1) return errors.cantfindUser(message.channel)
 
   const data = await MeetinggetData(args)

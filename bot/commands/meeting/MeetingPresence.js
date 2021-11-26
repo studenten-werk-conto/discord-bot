@@ -1,11 +1,13 @@
+const { PrivilegeCheck, errors } = require('../../utils')
 const { db_updateuser } = require('../../utils/database')
 const UserFormatForDB = require('../../utils/UserFormatForDB')
 
 function MeetingPresence(bot, message, args) {
-  if (!PrivilegeCheck(message)) return errors.noPerms(message, 'you no teacher')
+  if (PrivilegeCheck(message)) return errors.noPerms(message, 'you no teacher')
 
   message.guild.channels.fetch().then((channels) => {
-    channels.forEach((i) => {
+    console.log(channels)
+    channels.map((i) => {
       // loop trough all the channels of a
       if (i.type === 'GUILD_VOICE') {
         // only voice channels

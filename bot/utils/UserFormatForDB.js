@@ -17,10 +17,7 @@ function UserFormatForDB(k, message, UserData) {
       recorded_by: message.author.id, // teachers discord id
       recorded_by_username: message.author.username,
       time: new Date(), // time of presence poll
-      channel_name: i.name, // name of the voice channel
-    },
-    user_data: {
-      email: UserData.email,
+      channel_name: k.name, // name of the voice channel
     },
   }
 

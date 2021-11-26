@@ -3,7 +3,7 @@ const { PrivilegeCheck } = require('../../utils')
 const errors = require('../../utils/errors')
 
 function MeetingCreate(bot, message, args) {
-  if (!PrivilegeCheck(message))
+  if (PrivilegeCheck(message))
     return errors.noPerms(message, 'you need to be a teacher')
 
   message.guild.channels.fetch().then((channels) => {

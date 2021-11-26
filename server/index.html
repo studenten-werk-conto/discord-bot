@@ -34,7 +34,7 @@
             messagebox.innerHTML = `succesfully send a email to: <br> ${form[0].value}`
 
             // sends the data in the form of a get request
-            fetch(`http://localhost:8080/sendmail?trackid=${trackid}&email=${form[0].value}`)
+            fetch(`http://constantijn.gov:8080/sendmail?trackid=${trackid}&email=${form[0].value}`)
         });
 
 

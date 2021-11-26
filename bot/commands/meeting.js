@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
       MeetingCreate(bot, message, args)
       break
 
-    case ' ': // this is for .meeting remove.
+    case 'presence': // this is for .meeting remove.
       MeetingPresence(bot, message, args)
       break
     case 'get':
